@@ -9,15 +9,12 @@ class PacketSnifferApp:
         self.root = root
         self.root.title("Full-Fledged Packet Sniffer")
         
-        # Initialize packet counters
         self.packet_count = 0
         self.protocol_count = {'TCP': 0, 'UDP': 0, 'ICMP': 0}
 
-        # Create a text area for displaying packet information
         self.text_area = scrolledtext.ScrolledText(root, width=60, height=20)
         self.text_area.pack(padx=10, pady=10)
 
-        # Create buttons for controlling sniffing and displaying statistics
         self.start_button = tk.Button(root, text="Start Sniffing", command=self.start_sniffing)
         self.start_button.pack(pady=5)
 
@@ -34,7 +31,6 @@ class PacketSnifferApp:
             ip_layer = packet[IP]
             protocol = "TCP" if TCP in packet else "UDP" if UDP in packet else "ICMP" if packet.haslayer('ICMP') else "Other"
             
-            # Update counters
             self.packet_count += 1
             if protocol in self.protocol_count:
                 self.protocol_count[protocol] += 1
@@ -45,9 +41,8 @@ class PacketSnifferApp:
             packet_info += f"Protocol: {protocol}\n"
             packet_info += "-" * 40 + "\n"
 
-            # Insert packet info into the text area
             self.text_area.insert(tk.END, packet_info)
-            self.text_area.yview(tk.END)  # Scroll to the end
+            self.text_area.yview(tk.END)  
 
     def sniff_packets(self):
         sniff(prn=self.process_packet, store=False)
@@ -72,13 +67,11 @@ class PacketSnifferApp:
 
         plt.figure(figsize=(8, 6))
         
-        # Pie chart for protocol distribution
         plt.subplot(1, 2, 1)
         plt.pie(counts, labels=protocols, autopct='%1.1f%%', startangle=140)
         plt.axis('equal')
         plt.title(f"Protocol Distribution - Total Packets: {total_packets}")
 
-        # Bar chart for protocol counts
         plt.subplot(1, 2, 2)
         plt.bar(protocols, counts)
         plt.title("Packet Count by Protocol")
