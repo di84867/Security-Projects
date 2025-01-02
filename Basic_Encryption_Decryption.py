@@ -61,40 +61,32 @@ def process():
     output_var.set(result)
 
 
-# Create the main window
 root = tk.Tk()
 root.title("Encryption and Decryption Tool")
 
-# Input Message
 tk.Label(root, text="Enter Message:").grid(row=0, column=0)
 entry_message = tk.Entry(root, width=50)
 entry_message.grid(row=0, column=1)
 
-# Cipher Type Selection
 cipher_var = tk.StringVar(value="Caesar")
 tk.Label(root, text="Select Cipher:").grid(row=1, column=0)
 tk.Radiobutton(root, text="Caesar", variable=cipher_var, value="Caesar").grid(row=1, column=1)
 tk.Radiobutton(root, text="Vigenère", variable=cipher_var, value="Vigenère").grid(row=1, column=2)
 
-# Key/Shift Input
 tk.Label(root, text="Enter Key/Shift:").grid(row=2, column=0)
 entry_key = tk.Entry(root)
 entry_key.grid(row=2, column=1)
 
-# Mode Selection
 mode_var = tk.StringVar(value="Encrypt")
 tk.Label(root, text="Select Mode:").grid(row=3, column=0)
 tk.Radiobutton(root, text="Encrypt", variable=mode_var, value="Encrypt").grid(row=3, column=1)
 tk.Radiobutton(root, text="Decrypt", variable=mode_var, value="Decrypt").grid(row=3, column=2)
 
-# Process Button
 tk.Button(root, text="Process", command=process).grid(row=4, columnspan=3)
 
-# Output Result
 output_var = tk.StringVar()
 tk.Label(root, text="Result:").grid(row=5, column=0)
 output_label = tk.Label(root, textvariable=output_var)
 output_label.grid(row=5, column=1)
 
-# Start the GUI event loop
 root.mainloop()
