@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 import re
 
-# Constants
 MIN_LENGTH = 8
 STRENGTH_MESSAGES = {
     "weak": "Weak: {}",
@@ -43,11 +42,9 @@ def toggle_password_visibility():
         entry.config(show='*')
         show_password_button.config(text='Show Password')
 
-# Create the main window
 root = tk.Tk()
 root.title("Password Strength Checker")
 
-# Create and place the widgets using grid layout
 label = tk.Label(root, text="Enter your password:")
 label.grid(row=0, column=0, padx=10, pady=10)
 
@@ -60,5 +57,5 @@ check_button.grid(row=2, column=0, padx=10, pady=20)
 show_password_button = tk.Button(root, text="Show Password", command=toggle_password_visibility)
 show_password_button.grid(row=3, column=0, padx=10, pady=5)
 
-# Run the application
+
 root.mainloop()
